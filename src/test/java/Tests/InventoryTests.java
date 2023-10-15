@@ -6,9 +6,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+
 public class InventoryTests extends BaseTest {
     @BeforeMethod
-    public void pageSetUp() throws InterruptedException {
+    public void pageSetUp() {
         driver.navigate().to(homeURL);
         logIn(VALID_USERNAME, VALID_PASSWORD);
     }
@@ -23,10 +24,12 @@ public class InventoryTests extends BaseTest {
         Assert.assertEquals(inventoryPage.numberOfProductsInCart(), 3);
     }
     // istestiraj dropDown, pa assert sa prvim productom u inventaru
+    // ZAVRSI OVU METODU
     @Test
     public void selectFromDropDownMenu(){
         inventoryPage.selectDropdown("Name (Z to A)");
     }
+
     @Test
     public void hiddenMenuItems(){
         String[] menuItems = {"All Items", "About", "Logout", "Reset App State"};

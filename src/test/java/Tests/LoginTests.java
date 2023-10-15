@@ -7,6 +7,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class LoginTests extends BaseTest {
 
     @BeforeMethod
@@ -49,8 +51,15 @@ public class LoginTests extends BaseTest {
             Assert.assertEquals(driver.getCurrentUrl(), homeURL);
         }
     }
-
-    // probaj sa error_user i napravi screenshot za bug report
+    @Test
+    public void logInProblemUser() throws IOException {
+        logIn(excelReader.getStringData("Login", 1, 3), VALID_PASSWORD);
+        wait.until(ExpectedConditions.visibilityOf(inventoryPage.sortDropDown));
+        takeScreenshot("src/test/java/problem_user.png");
+        Assert.assertEquals(driver.getCurrentUrl(), InventoryPage.inventoryURL);
+        Assert.assertTrue(inventoryPage.sortDropDown.isDisplayed());
+        Assert.assertTrue(inventoryPage.cartButton.isDisplayed());
+    }
     @Test
     public void logOutUser(){
         logIn(VALID_USERNAME, VALID_PASSWORD);

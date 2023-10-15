@@ -74,5 +74,8 @@ public class InventoryPage extends BaseTest {
     public String getFirstInventoryFromList(){
         return inventoryList.get(0).getText();
     }
+    public void clickOnCartButton(){
+        cartButton.click();
+    }
 
 }
