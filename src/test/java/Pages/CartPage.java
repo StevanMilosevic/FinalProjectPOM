@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class CartPage extends BaseTest {
     public static String completeCheckoutURL = "https://www.saucedemo.com/checkout-complete.html";
     public CartPage(){
@@ -34,6 +36,15 @@ public class CartPage extends BaseTest {
     @FindBy(className = "complete-header")
     public WebElement header;
 
+    @FindBy(id = "cancel")
+    public WebElement cancelButton;
+
+    @FindBy(className = "inventory_item_price")
+    public WebElement itemPrice;
+
+    @FindBy(className = "inventory_item_price")
+    public List<WebElement> itemsPrice;
+
     //-------------------------------
     public void clickOnCheckoutButton(){
         checkoutButton.click();
@@ -55,5 +66,8 @@ public class CartPage extends BaseTest {
     }
     public void clickOnFinishButton(){
         finishButton.click();
+    }
+    public void clickOnCancelButton(){
+        cancelButton.click();
     }
 }

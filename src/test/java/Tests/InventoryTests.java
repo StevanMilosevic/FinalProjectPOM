@@ -6,6 +6,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class InventoryTests extends BaseTest {
     @BeforeMethod
@@ -23,13 +26,13 @@ public class InventoryTests extends BaseTest {
         inventoryPage.addOnesieToCart();
         Assert.assertEquals(inventoryPage.numberOfProductsInCart(), 3);
     }
-    // istestiraj dropDown, pa assert sa prvim productom u inventaru
-    // ZAVRSI OVU METODU
     @Test
     public void selectFromDropDownMenu(){
+        String firstItem = inventoryPage.getFirstInventoryFromList();
         inventoryPage.selectDropdown("Name (Z to A)");
+        String secondItem = inventoryPage.getFirstInventoryFromList();
+        Assert.assertFalse(firstItem.equalsIgnoreCase(secondItem));
     }
-
     @Test
     public void hiddenMenuItems(){
         String[] menuItems = {"All Items", "About", "Logout", "Reset App State"};
@@ -39,5 +42,12 @@ public class InventoryTests extends BaseTest {
         for (int i = 0; i < hiddenMenu.hiddenMenuItems.size();i++) {
             Assert.assertEquals(hiddenMenu.hiddenMenuItems.get(i).getText(), menuItems[i]);
         }
+    }
+    @Test
+    public void checkFooterIcons(){
+        inventoryPage.clickOnLinkedInIcon();
+        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        String actualURL = driver.switchTo().window(tabs.get(1)).getCurrentUrl();
+        Assert.assertEquals(actualURL, "https://www.linkedin.com/company/sauce-labs/");
     }
 }

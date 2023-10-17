@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
 
 import java.util.List;
 
@@ -41,8 +42,14 @@ public class InventoryPage extends BaseTest {
     @FindBy(id = "remove-sauce-labs-onesie")
     public WebElement removeOnesie;
 
-    @FindBy(className = "inventory_item_name")
+    @FindBy(className = "inventory_item")
     public List<WebElement> inventoryList;
+
+    @FindBy(className = "social_twitter")
+    public WebElement twitterIcon;
+
+    @FindBy(className = "social_linkedin")
+    public WebElement linkedIn;
 
     // -------------------
     public void addBackpackToCart(){
@@ -77,5 +84,10 @@ public class InventoryPage extends BaseTest {
     public void clickOnCartButton(){
         cartButton.click();
     }
-
+    public void clickOnTwitterIcon(){
+        twitterIcon.click();
+    }
+    public void clickOnLinkedInIcon(){
+        linkedIn.click();
+    }
 }
