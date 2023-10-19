@@ -1,9 +1,6 @@
 package Base;
 
-import Pages.CartPage;
-import Pages.HiddenMenuPage;
-import Pages.InventoryPage;
-import Pages.LoginPage;
+import Pages.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -28,6 +25,7 @@ public class BaseTest {
     public ExcelReader excelReader;
     public HiddenMenuPage hiddenMenu;
     public CartPage cartPage;
+    public CheckoutPage checkoutPage;
 
     public void logIn(String username, String password) {
         loginPage.inputUsername(username);
@@ -54,6 +52,7 @@ public class BaseTest {
         excelReader = new ExcelReader("src/test/java/users.xlsx");
         hiddenMenu = new HiddenMenuPage();
         cartPage = new CartPage();
+        checkoutPage = new CheckoutPage();
     }
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException {

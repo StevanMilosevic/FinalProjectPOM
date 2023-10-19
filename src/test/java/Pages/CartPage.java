@@ -45,6 +45,9 @@ public class CartPage extends BaseTest {
     @FindBy(className = "inventory_item_price")
     public List<WebElement> itemsPrice;
 
+    @FindBy(css = ".btn.btn_secondary.btn_small.cart_button")
+    public List<WebElement> RemoveButton;
+
     //-------------------------------
     public void clickOnCheckoutButton(){
         checkoutButton.click();
@@ -69,5 +72,12 @@ public class CartPage extends BaseTest {
     }
     public void clickOnCancelButton(){
         cancelButton.click();
+    }
+    public void removeItemsFromCart() {
+        if(!RemoveButton.isEmpty()) {
+            while(!RemoveButton.isEmpty()) {
+                RemoveButton.get(0).click();
+            }
+        }
     }
 }
