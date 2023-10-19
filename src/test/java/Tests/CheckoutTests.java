@@ -61,9 +61,4 @@ public class CheckoutTests extends BaseTest {
         inventoryPage.clickOnCartButton();
         cartPage.clickOnCheckoutButton();
     }
-    @AfterMethod
-    public void tearDown(){
-        driver.manage().deleteAllCookies();
-    }
-
 }
