@@ -56,9 +56,4 @@ public class CheckoutTests extends BaseTest {
         Assert.assertEquals(checkoutPage.errorMessage.getText(), "Error: Postal Code is required");
         Assert.assertTrue(checkoutPage.errorMessage.isDisplayed());
     }
-    public void oneStep(){
-        inventoryPage.addBackpackToCart();
-        inventoryPage.clickOnCartButton();
-        cartPage.clickOnCheckoutButton();
-    }
 }
