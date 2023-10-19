@@ -7,6 +7,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
@@ -47,12 +48,7 @@ public class BaseTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        loginPage = new LoginPage();
-        inventoryPage = new InventoryPage();
         excelReader = new ExcelReader("src/test/java/users.xlsx");
-        hiddenMenu = new HiddenMenuPage();
-        cartPage = new CartPage();
-        checkoutPage = new CheckoutPage();
     }
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException {
@@ -61,7 +57,10 @@ public class BaseTest {
             File savedScreenshot = new File("target/screenshots/"+System.currentTimeMillis()+".jpg");
             FileUtils.copyFile(screenshot, savedScreenshot);
         }
-        //driver.quit();
+    }
+    @AfterClass
+    public void quitAll(){
+        driver.quit();
     }
 
 }

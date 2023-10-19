@@ -1,6 +1,9 @@
 package Tests;
 
 import Base.BaseTest;
+import Pages.HiddenMenuPage;
+import Pages.InventoryPage;
+import Pages.LoginPage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -13,6 +16,9 @@ import java.util.List;
 public class InventoryTests extends BaseTest {
     @BeforeMethod
     public void pageSetUp() {
+        loginPage = new LoginPage();
+        inventoryPage = new InventoryPage();
+        hiddenMenu = new HiddenMenuPage();
         driver.navigate().to(homeURL);
         logIn(VALID_USERNAME, VALID_PASSWORD);
     }
